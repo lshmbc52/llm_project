@@ -1,3 +1,6 @@
-for i in range(2, 10):
-    for j in range(2, 10):
-        print(f"{i} * {j} = {i*j}")
+# entire file content ...
+for i in range(1, 10):
+    print(f"{i} x {i} = {i * i}")
+
+print("End of multiplication table")
+# ... goes in between
