@@ -1,0 +1,33 @@
+# Python 캐시
+__pycache__/
+*.pyc
+
+# Aider 및 툴 캐시
+.aider*
+
+# 데이터베이스 및 무거운 파일
+chroma_db/
+cache/
+
+# 개인 설정 및 보안 (중요!)
+.env
+.vscode/
+
+# 가상환경 폴더
+langchain/# Python 캐시
+__pycache__/
+*.pyc
+
+# Aider 및 툴 캐시
+.aider*
+
+# 데이터베이스 및 무거운 파일
+chroma_db/
+cache/
+
+# 개인 설정 및 보안 (중요!)
+.env
+.vscode/
+
+# 가상환경 폴더
+langchain/
