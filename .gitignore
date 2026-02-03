@@ -37,5 +37,11 @@ langchain_02/ch03_tool/middleware/credentials.json
 langchain_02/ch03_tool/middleware/token.json
 langchain_02/ch03_tool/middleware/*.out
 
+# Google Auth secrets
+credentials.json
+token.json
+
+# C/C++ build files
+*.out
 
 
