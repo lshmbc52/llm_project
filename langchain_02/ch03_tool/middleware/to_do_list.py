@@ -1,7 +1,7 @@
 import common_utils_solar as utils
 from langchain.tools import tool
 from langchain.agents import create_agent
-from langchain.agents.middleware import LLMToolEmulator
+from langchain.agents.middleware import LLMToolEmulator, TodoListMiddleware
 
 model = utils.get_solar_model(model_name="solar-pro")
 
@@ -25,14 +25,18 @@ def read_email_tool(limit: int = 3) -> utils.List[utils.Dict[str, str]]:
 agent = create_agent(
     model=model,
     tools=[send_email_tool, read_email_tool],
-    middleware=[LLMToolEmulator(model="solar-pro")],
+    middleware=[LLMToolEmulator(model="solar-pro"), TodoListMiddleware()],
 )
 
 if __name__ == "__main__":
     response = agent.invoke(
         {
             "messages": [
-                {"role": "user", "content": "최근에 온 이메일 3개만 확인하고 답장해줘"}
+                {
+                    "role": "user",
+                    "content": "온 메일 다 확인한 뒤 나에게 요약해 보고해.그다음 답장 작성해\
+                        회신 보내줘.마지막으로 어떻게 보냈는지 보고하고",
+                }
             ]
         },
     )

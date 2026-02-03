@@ -31,3 +31,11 @@ cache/
 
 # 가상환경 폴더
 langchain/
+
+# .gitignore 파일에 아래 내용 추가
+langchain_02/ch03_tool/middleware/credentials.json
+langchain_02/ch03_tool/middleware/token.json
+langchain_02/ch03_tool/middleware/*.out
+
+
+

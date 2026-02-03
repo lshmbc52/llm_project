@@ -1,1 +1,1 @@
-/home/sh/langchain/langchain_02/ch03_tool/common_utils_solar.py
+/home/sh/langchain_v1/langchain_02/common_utils_solar.py
