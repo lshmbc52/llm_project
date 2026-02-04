@@ -1,6 +1,7 @@
 import os
 import gc
-import torch
+
+# import torch
 from contextlib import contextmanager
 from langchain_upstage import ChatUpstage  # Upstage 전용 라이브러리 사용
 from contextlib import contextmanager
