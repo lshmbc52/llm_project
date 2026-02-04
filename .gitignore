@@ -22,7 +22,7 @@ torch/
 torch_ex/
 torch_park/
 snap/
-
+langchain_v1/
 # 2. 시스템 기본 폴더 (OpenCode가 읽을 필요 없음)
 Pictures/
 Videos/
