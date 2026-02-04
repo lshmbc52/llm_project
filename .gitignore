@@ -1,47 +1,45 @@
-# Python 캐시
+# === 기존 설정 유지 ===
 __pycache__/
 *.pyc
-
-# Aider 및 툴 캐시
 .aider*
-
-# 데이터베이스 및 무거운 파일
 chroma_db/
 cache/
-
-# 개인 설정 및 보안 (중요!)
 .env
 .vscode/
-
-# 가상환경 폴더
-langchain/# Python 캐시
-__pycache__/
-*.pyc
-
-# Aider 및 툴 캐시
-.aider*
-
-# 데이터베이스 및 무거운 파일
-chroma_db/
-cache/
-
-# 개인 설정 및 보안 (중요!)
-.env
-.vscode/
-
-# 가상환경 폴더
 langchain/
-
-# .gitignore 파일에 아래 내용 추가
 langchain_02/ch03_tool/middleware/credentials.json
 langchain_02/ch03_tool/middleware/token.json
 langchain_02/ch03_tool/middleware/*.out
-
-# Google Auth secrets
 credentials.json
 token.json
-
-# C/C++ build files
 *.out
+
+# === 실행 속도 향상을 위해 새로 추가할 항목 ===
+
+# 1. 대용량 라이브러리 및 가상환경 (가장 중요)
+pykrx_env/
+torch/
+torch_ex/
+torch_park/
+snap/
+
+# 2. 시스템 기본 폴더 (OpenCode가 읽을 필요 없음)
+Pictures/
+Videos/
+Templates/
+Public/
+
+# 3. 히스토리 및 설정 백업 파일
+.bash_history
+.bash_history-*.tmp
+.python_history
+.rediscli_history
+.claude.json*
+.lmstudio-home-pointer*
+*.backup
+*.log
+
+# 4. 기타 에이전트 불필요 파일
+Modelfile*
 
 
