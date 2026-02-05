@@ -26,9 +26,11 @@ agent = create_agent(
     context_schema=Context,
 )
 
-response = agent.invoke(
-    {"messages": [{"role": "user", "content": "제 이름이 뭐죠?"}]},
-    context=Context(user_name="SH"),
-)
+if __name__=="__main__":
 
-print(response)
+    response = agent.invoke(
+        {"messages": [{"role": "user", "content": "제 이름이 뭐죠?"}]},
+        context=Context(user_name="SH"),
+    )
+
+    print(response)
