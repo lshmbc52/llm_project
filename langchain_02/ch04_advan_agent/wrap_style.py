@@ -34,7 +34,7 @@ agent = create_agent(
     middleware=[inject_user_name, log_after_model],
     context_schema=Context,
 )
-if __name__ =="__main__":
+if __name__ == "__main__":
     response = agent.invoke(
         {"messages": [{"role": "user", "content": " 제 이름이 뭐죠?"}]},
         context=Context(user_name="SH Lee입니다."),
