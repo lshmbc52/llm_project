@@ -23,11 +23,27 @@ vector_store = Chroma(
 
 retriever = vector_store.as_retriever(search_kwargs={"k": 3})
 
-from langsmith import Client
+# from langsmith import Client
 
-client = Client()
-rag_prompt = client.pull_prompt("rlm/rag-prompt", include_model=True)
+# client = Client()
+# rag_prompt = client.pull_prompt("rlm/rag-prompt", include_model=False)
+# lcel.py 파일의 상단 프롬프트 부분을 아래와 같이 수정하세요.
 
+from langchain_core.prompts import ChatPromptTemplate
+
+# 1. 기존의 client.pull_prompt 코드를 주석 처리합니다.
+# client = Client()
+# rag_prompt = client.pull_prompt("rlm/rag-prompt")
+
+# 2. 대신 아래와 같이 직접 프롬프트를 정의합니다.
+rag_prompt = ChatPromptTemplate.from_template(
+    "당신은 질문-답변 과업을 수행하는 보조자입니다. "
+    "검색된 다음 문맥(Context)을 사용하여 질문에 답하세요. "
+    "답을 모른다면 모른다고 답변하고, 답변은 세 문장 이내로 간결하게 작성하세요.\n\n"
+    "Question: {question}\n"
+    "Context: {context}\n"
+    "Answer:"
+)
 
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
@@ -43,8 +59,9 @@ tax_base_chain = (
     | StrOutputParser()
 )
 
-tax_base_question = "주택에 대한 종합부동산세 과세표준을 계산하는 방법은 무엇인가요?"
+#tax_base_question = "주택에 대한 종합부동산세 과세표준을 계산하는 방법은 무엇인가요?"
 
+tax_base_question = "주택에 대한 종합부동산세 과세표준을 계산하는 방법을 수식으로 표현해서 수식만 반환해주세요. 부연설명은 하지 말고" 
 tax_base_response = tax_base_chain.invoke(tax_base_question)
 print(tax_base_response)
 
