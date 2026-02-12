@@ -45,6 +45,7 @@ rag_prompt = ChatPromptTemplate.from_template(
     "Answer:"
 )
 
+
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
 
@@ -59,11 +60,20 @@ tax_base_chain = (
     | StrOutputParser()
 )
 
-#tax_base_question = "주택에 대한 종합부동산세 과세표준을 계산하는 방법은 무엇인가요?"
 
-tax_base_question = "주택에 대한 종합부동산세 과세표준을 계산하는 방법을 수식으로 표현해서 수식만 반환해주세요. 부연설명은 하지 말고" 
-tax_base_response = tax_base_chain.invoke(tax_base_question)
-print(tax_base_response)
+def get_tax_base_info(question="주택분 종합부동산 과세표준은?"):
+    return tax_base_chain.invoke(question)
+
+
+# tax_base_question = "주택에 대한 종합부동산세 과세표준을 계산하는 방법은 무엇인가요?"
+
+tax_base_question = "주택에 대한 종합부동산세 과세표준을 계산하는 방법을 수식으로 표현해서 수식만 반환해주세요. 부연설명은 하지 말고"
+
+if __name__ == "__main__":
+
+    # tax_base_response = tax_base_chain.invoke(tax_base_question)
+    # print(tax_base_response)
+    print(get_tax_base_info())
 
 
 # tax_base_prompt = PromptTemplate(
