@@ -13,7 +13,7 @@ build==1.2.2.post1
 cachetools==5.5.2
 certifi==2025.8.3
 charset-normalizer==3.4.2
-chromadb==1.5.0
+chromadb
 click==8.2.1
 coloredlogs==15.0.1
 comm==0.2.3
@@ -35,12 +35,12 @@ frozenlist==1.7.0
 fsspec==2025.7.0
 gitdb==4.0.12
 GitPython==3.1.45
-google-ai-generativelanguage==0.6.15
+google-ai-generativelanguage
 google-api-core==2.25.1
 google-api-python-client==2.178.0
 google-auth==2.40.3
 google-auth-httplib2==0.2.0
-google-generativeai==0.8.5
+google-generativeai
 googleapis-common-protos==1.70.0
 greenlet==3.2.3
 grep-ast==0.9.0
@@ -77,7 +77,7 @@ langchain-chroma==1.1.0
 langchain-classic==1.0.0
 langchain-community==0.4.1
 langchain-core==1.2.7
-langchain-google-genai==3.2.0
+langchain-google-genai
 langchain-ollama==1.0.1
 langchain-openai==1.1.7
 langchain-pinecone==0.2.13
@@ -141,7 +141,7 @@ pinecone==7.3.0
 pinecone-plugin-assistant==1.8.0
 pinecone-plugin-interface==0.0.7
 platformdirs==4.3.8
-posthog==6.4.1
+posthog
 prompt_toolkit==3.0.51
 propcache==0.3.2
 proto-plus==1.26.1
@@ -196,9 +196,9 @@ sympy==1.13.1
 tenacity==8.5.0
 tiktoken==0.10.0
 tokenizers==0.20.3
-torch==2.5.1+cu121
-torchaudio==2.5.1+cu121
-torchvision==0.20.1+cu121
+torch
+torchaudio
+torchvision
 tornado==6.5.1
 tqdm==4.67.1
 traitlets==5.14.3
