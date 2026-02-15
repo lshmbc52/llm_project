@@ -11,6 +11,7 @@ from langsmith import Client
 from langchain_core.prompts import PromptTemplate
 from datetime import datetime
 from langchain_tavily import TavilySearch
+from langchain_core.prompts import ChatPromptTemplate
 
 llm = utils.get_solar_model(model_name="solar-pro")
 load_dotenv()
@@ -79,8 +80,7 @@ tax_base_question = "주택에 대한 종합부동산세 과세표준을 계산�
 tax_base_response = tax_base_chain.invoke(tax_base_question)
 # print(tax_base_response)
 
-question = "10억짜리 집 2채를 가지고 있을 때 종합부동산세는 얼마나 내나요?"
-
+question = "공시가격 1억 원 김천 아파트 1채와 공시가격 8억 원 신림동 다중주택 1채를 보유한 경우(총 2주택), 종합부동산세를 계산해줘."
 user_deduction_prompt = """아래 [Context]는 주택에 대한 종합부동산세의 공제액에 관한 내용입니다.
 사용자의 질문에 답하기 위해'기본 공제액' 조항(보통 9억원 또는 12억원)을 찾아서 그 금액이 얼마인지만 답하세요.
 #사용자의 질문을 통해서 가지고 있는 주택수에 대한 공제액이 얼마인지 금액만 반환해 주세요.
@@ -145,4 +145,35 @@ market_value_rate = market_value_rate_chain.invoke(
     {"context": combined_context, "question": question}
 )
 
-print(market_value_rate)
+# print(market_value_rate)
+
+house_tax_prompt = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            """당신은 세무 전문가 입니다. 아래 규칙을 엄격히 준수하야 계산하세요.
+         1.과세표준 계산 순서:
+         (주택 공시가격 합계 - 공제액) x 공정시장가액비율
+         2.현재 확정 데이터:
+         - 공제액:{tax_deductible_response}
+         - 공정시장가액비율:{market_value_rate}
+         - 세율: {tax_rate}조항을 참고하여 누진세율을 적용하세요.
+         반드시 위 순서대로 계산과정을 보여주세요.""",
+        ),
+        ("human", "{question}"),
+    ]
+)
+
+house_tax_prompt = house_tax_prompt.partial(
+    market_value_rate=market_value_rate,
+    tax_deductible_response=tax_deductible_response,
+)
+house_tax_chain = (
+    {"tax_rate": retriever | format_docs, "question": RunnablePassthrough()}
+    | house_tax_prompt
+    | llm
+    | StrOutputParser()
+)
+
+house_tax = house_tax_chain.invoke(question)
+print(house_tax)
