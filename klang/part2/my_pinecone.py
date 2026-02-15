@@ -33,7 +33,7 @@ text_splitter = RecursiveCharacterTextSplitter(
     ],
 )
 
-loader = Docx2txtLoader("/home/sh/Downloads/law_markdown.docx")
+loader = Docx2txtLoader("./law_markdown.docx")
 document_list = loader.load_and_split(text_splitter=text_splitter)
 
 embedding = OpenAIEmbeddings(
