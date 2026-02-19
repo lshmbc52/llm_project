@@ -86,7 +86,7 @@ langchain-community==0.4.1
 langchain-core==1.2.13
 langchain-google-genai==4.2.0
 langchain-ollama==1.0.1
-langchain-openai==1.1.7
+langchain-openai==1.1.10
 langchain-pinecone==0.2.13
 langchain-tavily==0.2.17
 langchain-text-splitters==1.1.0
@@ -131,7 +131,7 @@ nvidia-nvtx-cu12==12.8.90
 oauthlib==3.3.1
 ollama==0.6.1
 onnxruntime==1.23.2
-openai==2.16.0
+openai==2.21.0
 opentelemetry-api==1.39.1
 opentelemetry-exporter-otlp-proto-common==1.39.1
 opentelemetry-exporter-otlp-proto-grpc==1.39.1
