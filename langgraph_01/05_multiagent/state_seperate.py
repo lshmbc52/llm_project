@@ -67,3 +67,27 @@ def call_delivery_service(state: RestaurantState):
     final_status = delivery_result["delivery_status"]
 
     return {"final_status": final_status}
+
+
+parent_builder = StateGraph(RestaurantState)
+
+parent_builder.add_node("kitchen", cook_food)
+parent_builder.add_node("delivery_manager", call_delivery_service)
+
+parent_builder.add_edge(START, "kitchen")
+parent_builder.add_edge("kitchen", "delivery_manager")
+parent_builder.add_edge("delivery_manager", END)
+
+app = parent_builder.compile()
+
+app.get_graph().draw_mermaid_png(output_file_path="graph_image_delivery_manager.png")
+# print("그래프 저장완료")
+
+inputs = {
+    "menu": "특선 초밥 세트",
+    "customer_address": "서울시 관악구 신림동",
+    "message": [],
+}
+
+result = app.invoke(inputs)
+print(result)
